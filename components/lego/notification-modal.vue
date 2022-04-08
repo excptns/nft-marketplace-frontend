@@ -4,6 +4,9 @@
       <div class="align-self-center">
         <div class="modal-dialog w-sm-100" role="document">
           <div class="box info-box">
+            <div class="close-wrapper" @click="$emit('close')">
+              <svg-sprite-icon name="close-modal" class="close" />
+            </div>
             <div class="box-body">
               <div class="container ps-x-20">
                 <div class="banner-info ps-y-24">
@@ -11,23 +14,31 @@
                     Matic trading is now live on OpenSea
                   </div>
                   <div class="banner-info__desc text-center ps-x-4 ps-t-20">
-                    <div class="ms-t-12">Matic assets are now available to view, buy and sell on OpenSea.</div>
                     <div class="ms-t-12">
-                    If you've listed an item for sale here (matic.opensea.io), <span class="text-highlight">you need to re-list it on OpenSea (opensea.io) in order for the sale to be active there.</span>
+                      Matic assets are now available to view, buy and sell on
+                      OpenSea.
+                    </div>
+                    <div class="ms-t-12">
+                      If you've listed an item for sale here (matic.opensea.io),
+                      <span class="text-highlight"
+                        >you need to re-list it on OpenSea (opensea.io) in order
+                        for the sale to be active there.</span
+                      >
                     </div>
                     <div class="ps-t-12">
-                    We have fully migrated to opensea.io
+                      We have fully migrated to opensea.io
                     </div>
                   </div>
                   <div
                     class="banner-info__action w-100 text-center ps-t-32 d-flex justify-content-center"
                   >
-                    <a href="https://opensea.io/assets?search%5Bchains%5D%5B0%5D=MATIC" target="_blank" rel="noopener noreferrer">
+                    <a
+                      href="https://opensea.io/assets?search%5Bchains%5D%5B0%5D=MATIC"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <button class="btn text-white d-flex">
-                        <img 
-                          src="~/static/icons/opensea.svg"
-                          class="img"
-                        />
+                        <img src="~/static/icons/opensea.svg" class="img" />
                         <div class="d-flex align-self-center">
                           Go to OpenSea
                         </div>
@@ -52,11 +63,16 @@ import Component from "nuxt-class-component";
 
 @Component({
   components: {},
-  props: {}
+  props: {
+    close: {
+      type: Function,
+      required: true
+    }
+  }
 })
 export default class NotificationBanner extends Vue {
   closeModal() {
-    // this.$emit('close');
+    this.$emit("close");
   }
 }
 </script>
@@ -71,6 +87,18 @@ export default class NotificationBanner extends Vue {
 .modal-close {
   right: 0;
   padding: 1rem 1rem 0 0;
+}
+
+.close-wrapper {
+  top: 10px;
+  right: 10px;
+  z-index: 111;
+  position: absolute;
+  cursor: pointer;
+  .close {
+    width: 38px !important;
+    height: 38px !important;
+  }
 }
 
 .modal-dialog {
